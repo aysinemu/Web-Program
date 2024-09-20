@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23146007 - Nguyen Chau Tan Cuong</title>
+    <style>
+        .changecolor:hover {
+            color:red;
+            width: 100px;
+            display: block;
+        }
+        .block {
+            display: block;
+        }
+        .nounder {
+            text-decoration: none;
+            display: block;
+        }
+        .nounder:hover {
+            background-color: aqua;
+            border: solid red;
+        }
+        .noounder {
+            text-decoration: none;
+            display: block;
+            width: 50px;
+            transform: translateY(none);
+        }
+        .noounder:hover {
+            text-decoration:underline;
+            transform: translateY(-10px);
+        }
+        .image {
+            display: block;
+            border: solid cyan;
+            text-decoration: none;
+            width: 50px;
+        }
+        .image:hover {
+            text-decoration: underline;
+            border: solid cyan;
+            background-image: url(https://tse1.mm.bing.net/th?id=OIP.hq1ZQQRK8R8JwHNuKTR_xgHaDo&pid=Api&P=0&h=220);
+        }
+    </style>
+</head>
+<body>
+    <p class="block">Đưa chuột vào link đổi màu</p>
+    <p><a class="block" href="#">Go to page (default)</a></p>
+    <p><a class = "changecolor" href="#">Go to page 2</a></p>
+    <p class="block">Link ko có gạch dưới, đưa mouse vào đổi background và xuất hiện viền</p>
+    <p><a href="#" class="nounder">Link 1</a></p>
+    <p><a href="#" class="nounder">Link 2</a></p>
+    <p class="block">Link ko có gạch dưới, đưa mouse vào xuất hiện gạch dưới và nhảy lên 1 tí</p>
+    <p><a class="noounder" href="#">Link 1</a></p>
+    <p><a class="noounder" href="#">Link 2</a></p>
+    <p class="block">Link có background image</p>
+    <p><a href="#" class="image">Link 1</a></p>
+    <p><a href="#" class="image">Link 2</a></p>
+</body>
+</html>
