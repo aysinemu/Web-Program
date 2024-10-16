@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23146007 - Nguyen Chau Tan Cuong</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="" method="post">
+        <div class="first">
+            <div>
+                <img src="E:\HTML\WebProgram\F4\IA03-CSSLayoutContactForm\cat.jpg" width="100px" height="70px">
+            </div>
+            <div class="box">
+                <p><a class="block" href="HOME.html">HOME</a></p>
+                <p><a class="block" href="JOBS.html">JOBS</a></p>
+                <p><a class="block" href="CONTACT.html">CONTACT</a></p>
+            </div>
+        </div>
+        <h1 class="second">GENERAL INQUIRIES</h1>
+        <div class="third">
+            <div>NAME</div>
+            <input type="text" value="Required" id="namerequired" class="required" readonly>
+        </div>
+        <input id="name" type="text" class="spread">
+        <div class="fourth">
+            <div>EMAIL</div>
+            <input type="text" value="Required" id="emailrequired" class="required" readonly>
+        </div>
+        <input id="email" type="text" class="spread">
+        <div>NATURE OF ENQUIRY</div>
+        <select name="general" class="spread"> 
+            <optgroup label="">
+                <option value="1">General</option>
+            </optgroup>
+        </select>
+        <div>MESSAGE</div>
+        <textarea  cols="20" rows="5" wrap="on" class="spread"></textarea>
+        <div class="randomnumer">
+            <input type="text" name="" id="random1" class="randombox" readonly>
+            <div>+&nbsp;&nbsp;</div>
+            <input type="text" name="" id="random2" class="randombox" readonly>
+            <div>=</div>
+            <div>&nbsp;&nbsp;?</div>
+        </div>
+        <input type="text" value="Required" id="ansrequired" class="required_diff" readonly>
+        <input type="text" class="spread" id="ans">
+        <button id="checkall" class="fifth" type="button">SUBMIT</button>
+        <p align="center"> 200 Online Users - 24 Visited Users</p>
+    </form>
+    <script>
+        function checkrobot(){
+            let max = 999;
+            let randomInt1 = Math.floor(Math.random() * max);
+            let randomInt2 = Math.floor(Math.random() * max);
+            document.querySelector('#random1').value = randomInt1
+            document.querySelector('#random2').value = randomInt2
+        }
+        window.onload = function() {
+            checkrobot();
+        }
+    </script>
+    <script>
+        function checkal(){
+            let namecheck = document.querySelector('#name').value.trim();
+            let gmailcheck = document.querySelector('#email').value.trim();
+            let ansnumer = document.querySelector('#ans').value;
+            let x = document.querySelector('#random1').value;
+            let y = document.querySelector('#random2').value;
+            let xy = parseInt(x) + parseInt(y);
+            let ansnumerr = parseInt(ansnumer);
+            let z = 0;
+            document.querySelector('#namerequired').value = 'Required';
+            document.querySelector('#emailrequired').value = 'Required';
+            document.querySelector('#ansrequired').value = 'Required';
+            if (namecheck === "") {
+                document.querySelector('#namerequired').value = 'Please fill out your name';
+            }else if (/\d/.test(namecheck)) {
+                document.querySelector('#namerequired').value = 'Please fill out your name';
+            }else{
+                z = z + 1
+            }
+            if (gmailcheck === "") {
+                document.querySelector('#emailrequired').value = 'Please fill out a valid gmail format';
+            }else if (gmailcheck.indexOf('@') === -1) {
+                document.querySelector('#emailrequired').value = 'Please fill out a valid gmail format';
+            }else{
+                z = z + 1
+            }
+            if ( xy === ansnumerr && z === 2){
+                alert('Thank you for your informartion');
+            }else if (xy != ansnumer){ 
+                document.querySelector('#ansrequired').value = 'Please fill out a correct answer';
+            }
+        }
+        document.querySelector('#checkall').addEventListener('click',checkal)
+    </script>
+</body>
+</html>

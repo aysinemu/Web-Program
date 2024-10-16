@@ -1,0 +1,90 @@
+body {
+    margin: 10px;
+}
+
+.first {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box {
+    display: flex;
+}
+
+.block {
+    margin-right: 20px;
+    padding-right: 50px;
+    text-decoration: none;
+    font-weight: 900;
+    color: black;
+    text-align: center;
+    align-content: center;
+    height: 18px;
+    border-bottom: 1px solid black;
+}
+
+.block:hover {
+    color: orange;
+    border-bottom: 1px solid orange;
+}
+
+.second {
+    background-color: black;
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    text-align: center;
+    align-content: center;
+    height: 40px;
+    font-weight: 900;
+}
+
+.third {
+    display: flex;
+    justify-content: space-between;
+}
+
+.required {
+    color: orange;
+    font-weight: 900;
+    border: none;
+    text-align: end;
+}
+
+.fourth {
+    display: flex;
+    justify-content: space-between;
+}
+
+.spread {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.required_diff {
+    color: orange;
+    width: 100%;
+    border: none;
+    font-weight: 900;
+    text-align: end;
+}
+
+.fifth {
+    margin: 0;
+    background-color: black;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-align: center;
+    align-content: center;
+    height: 40px;
+    font-weight: 900;
+    width: 100%;
+}
+
+.randomnumer {
+    display: flex;
+}
+
+.randombox {
+    border: none;
+    width: 30px;
+}
