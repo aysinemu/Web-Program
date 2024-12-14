@@ -1,0 +1,34 @@
+<form action="" method="post">
+    <div class="card">
+        <h4 class="card-header">
+            <div class="form-group">
+              <input type="hidden" name="id" id="txtid" class="form-control" placeholder="" value="{{this.articles.id}}" readonly>
+            </div>
+            <h4>{{this.articles.title}}</h4>
+            <h5>{{this.articles.author}}</h5>
+        </h4>
+        <div class="card-body">
+            <img src="/static/imgs/sp/{{this.articles.id}}/main.jpg" alt="{{this.articles.title}}" title="{{this.articles.title}}">
+            <p class="card-text">
+                Nội dung tóm tắt: <span class="card-text">{{this.articles.abstract}}</span>
+            </p>
+            <p class="card-text">
+                Chuyên mục: {{this.articles.category_id}}
+            </p>
+            <h5>
+                Nội dung đầy đủ:
+            </h5>
+            <p class="card-text">
+                <div class="fulldes-content">
+                    {{this.articles.content}}
+                </div>
+            </p>
+        </div>
+        <div class="card-footer text-muted">
+            <a name="" id="" class="btn btn-primary" href="/" role="button">
+                <i class="bi bi-arrow-left-circle"></i>
+                Danh sách
+            </a>
+        </div>
+    </div>
+</form>

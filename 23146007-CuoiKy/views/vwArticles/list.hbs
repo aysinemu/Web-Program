@@ -1,0 +1,42 @@
+<div class="card">
+    <h4 class="card-header d-flex justify-content-between">
+       Articles
+       <a href="/articles/editor" role="button" class="btn btn-sm btn-outline-primary">Up articles</a>
+    </h4>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Abstract</th>
+                    <th>Content</th>
+                    <th>IsPremium</th>
+                    <th>CategoryID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.articles}}
+                  <tr>
+                      <td scope="row">{{id}}</td>
+                      <td>{{title}}</td>
+                      <td>{{author}}</td>
+                      <td>{{abstract}}</td>
+                      <td>{{content}}</td>
+                      <td>{{is_premium}}</td>
+                      <td>{{category_id}}</td>
+                      <td>
+                          <a name="" id="" class="btn btn-primary" href="/articles/detail?id={{id}}" role="button">
+                              <i class="bi bi-pencil-square"></i>
+                          </a>
+                      </td>
+                  </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+       The End
+    </div>
+<div>

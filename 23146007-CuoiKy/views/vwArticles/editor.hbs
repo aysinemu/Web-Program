@@ -1,0 +1,140 @@
+{{#fillHtmlContent 'css'}}
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
+{{/fillHtmlContent}}
+{{#fillHtmlContent 'js'}}
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.5.0/js/locales/vi.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.5.0/themes/fa5/theme.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/2x7n2s6o2yz6i273lvioacz7ygmmvsr8vso36ew5uosnyiyn/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+    selector: '#txtcontent',
+    plugins: 'paste image link autolink lists table media',
+    menubar: 'false',
+    toolbar: [
+        'undo redo | bold italic underline strikethrough | numlist bullist | alignright alignleft aligncenter | forecolor backcolor | image',
+    ],
+    content_style: "img { max-width: 100%; height: auto; }",
+    image_advtab: true, 
+    imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions"
+});
+</script>
+<script>
+$(document).ready(function () {
+    const $fileInput = $("#fuMain");
+
+    $fileInput.fileinput({
+        dropZoneEnabled: true,
+        maxFileCount: 5,
+        allowedFileExtensions: ['jpg','png'],
+        theme: "fa5",
+        language: "vi",
+        showUpload: false, 
+    });
+
+    function convertToJpg(blob, callback) {
+        const img = new Image();
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        img.onload = function () {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+
+            canvas.toBlob(
+                function (jpegBlob) {
+                    callback(jpegBlob);
+                },
+                "image/jpeg",
+                0.9 
+            );
+        };
+
+        const url = URL.createObjectURL(blob);
+        img.src = url;
+    }
+
+    $(document).on("paste", function (e) {
+        const clipboardData = e.originalEvent.clipboardData;
+
+        if (clipboardData && clipboardData.items) {
+            for (let item of clipboardData.items) {
+                if (item.type.startsWith("image/")) {
+                    const file = item.getAsFile();
+
+                    convertToJpg(file, function (jpegBlob) {
+                        const jpgFile = new File([jpegBlob], "pasted-image.jpg", { type: "image/jpeg" });
+
+                        const fileList = [$fileInput.fileinput("getFiles")].flat();
+                        fileList.push(jpgFile);
+                        $fileInput.fileinput("destroy").fileinput({
+                            initialPreview: [],
+                            initialPreviewFileType: "image",
+                            initialPreviewAsData: true,
+                            dropZoneEnabled: true,
+                            maxFileCount: 5,
+                            allowedFileExtensions: ['jpg'],
+                            theme: "fa5",
+                            language: "vi",
+                            showUpload: false,
+                        }).fileinput("refresh", { initialPreviewFileType: fileList })
+                    });
+                }
+            }
+        }
+    });
+});
+</script>
+{{/fillHtmlContent}}
+<form action="" method="post" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-header">
+            Articles
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+              <label for="txttitle">name</label>
+              <input type="text" name="title" id="txttitle" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="txtauthor">author</label>
+              <input type="text" name="author" id="txtauthor" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="txtabstract">abstract</label>
+              <input type="text" name="abstract" id="txtabstract" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="txtcontent">content</label>
+              <textarea name="content" id="txtcontent"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="txtis_premium">is_premium</label>
+              <input type="text" name="is_premium" id="txtis_premium"></input>
+            </div>
+            <div class="form-group">
+              <label for="txtcategory_id">category_id</label>
+              <input type="text" name="category_id" id="txtcategory_id"></input>
+            </div>
+            <div class="form-group">
+              <label for="fuMain">Photo "Lưu ý định dạnh jpg only"</label>
+              <input type="file" id="fuMain" name="fuMain" multiple>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a name="" id="" class="btn btn-primary" href="/" role="button">
+                <i class="bi bi-arrow-left-circle"></i>
+                Danh sách
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check2"></i>
+                Upload
+            </button>
+        </div>
+    </div>
+</form>
